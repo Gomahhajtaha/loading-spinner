@@ -1,0 +1,106 @@
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+
+.spinner{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    position: relative;
+    animation: text-color 1s ease-in-out infinite alternate;
+}
+
+.spinner-sector{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 15px solid transparent;
+    mix-blend-mode: overlay;
+    animation: rotate var(--duration) var(--timing) infinite;
+    pointer-events: none;
+}
+
+
+.red{
+    border-top-color:lightcoral;
+    --duration: 1.5s;
+    --timing: ease-in-out;
+}
+
+
+.blue {
+    border-left-color:lightblue;
+    --duration: 2s;
+    --timing: ease-in;
+}
+
+
+.green {
+    border-right-color:lightgreen;
+    --duration: 2.5s;
+    --timing: ease-out;
+}
+
+@keyframes rotate {
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes text-color {
+    0%{
+        color:rgba(0, 0, 0, 1)
+    }
+    50% {
+        color:rgba(0, 0, 0, .5)
+    }
+
+    100%{
+        color:rgba(0, 0, 0, .1)
+    }
+}
+
+/* here we got almost the same result but in another way ,but here we can only have 2 colors because there are just before and after */
+.spinner-2 {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 300px;
+height: 300px;
+font-size: 2rem;
+animation: text-color 1s ease-in-out infinite alternate;
+}
+
+.spinner-2::before,
+.spinner-2::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 15px solid transparent;
+    border-radius: 50%;
+    animation: rotate var(--duration) var(--timing) infinite;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+.spinner-2::before{
+    --duration : 2s;
+    --timing:ease-in;
+    border-right-color: lightblue;
+}
+
+.spinner-2::after {
+    --duration : 2.5s;
+    --timing:ease-out;
+    border-right-color: lightgreen;
+
+}
